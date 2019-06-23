@@ -5,15 +5,11 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-
-
-
-
 public class Program {
     public static void main(String[] args) {
 
         JFrame window = new JFrame();
-        window.setTitle("League of Legends");
+        window.setTitle("Stick Hero");
         window.setResizable(false);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.addKeyListener(new KeyAdapter() {
@@ -32,14 +28,11 @@ public class Program {
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     KeyEventPress.isSpacePress = false;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     KeyEventPress.isSpaceKeyJustRelease = true;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_S) {
                     KeyEventPress.isSPress = false;
                 }
-
             }
         });
 

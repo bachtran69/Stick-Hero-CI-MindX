@@ -1,6 +1,8 @@
 package game;
 
 import game.collum.Column;
+import game.player.Player;
+import game.player.Stick;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,11 +10,17 @@ import java.awt.*;
 public class GamePanel extends JPanel {
 
     double fps;
+    Player player;
+    Background background;
     Column column;
+    Stick stick;
 
 
     public GamePanel() {
+        background = new Background();
         column = new Column();
+        player = new Player();
+        stick = new Stick();
         fps = 0;
     }
 

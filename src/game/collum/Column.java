@@ -17,32 +17,26 @@ public class Column extends GameObject {
     public int distance;
     public Column() {
 
-        columnWidth = Mathx.random(10, 140);
-
+        columnWidth = Mathx.random(15, 70);
         distance = Mathx.random(20, 80);
-
         firstColumn = false;
-        position.set(Settings.COLUMN_TO_EDGE - columnWidth, Settings.GAME_HEIGHT - Settings.COLUMN_HEIGHT);
+        position.set(Settings.COLUMN_TO_EDGE - columnWidth, Settings.COLUMN_Y);
         hitBox = new BoxCollider(this, columnWidth, Settings.COLUMN_HEIGHT);
-        velocity.set(-2,0);
+//        velocity.set(-2,0);
 
     }
 
     @Override
     public void render(Graphics g) {
-
         g.setColor(Color.BLACK);
         g.fillRect((int) position.x, (int) position.y , columnWidth, Settings.COLUMN_HEIGHT);
-
     }
 
     @Override
     public void run() {
-
         if (KeyEventPress.isSpaceKeyJustRelease) {
             super.run();
-    }
-
+        }
         this.deactiveIfNeeded();
     }
 
@@ -52,7 +46,4 @@ public class Column extends GameObject {
             this.deactive();
         }
     }
-
-
-
 }

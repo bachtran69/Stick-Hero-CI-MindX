@@ -68,12 +68,12 @@ public class Vector2D {
 
     }
 
-    public static void main(String[] args) {
-        Vector2D v1 = new Vector2D(3, 3);
-        System.out.println(v1.getLength());
-        System.out.println(v1.getAngle());
-
-    }
+//    public static void main(String[] args) {
+//        Vector2D v1 = new Vector2D(3, 3);
+//        System.out.println(v1.getLength());
+//        System.out.println(v1.getAngle());
+//
+//    }
 
     @Override
     public String toString() {

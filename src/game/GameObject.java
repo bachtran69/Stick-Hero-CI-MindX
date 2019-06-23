@@ -63,7 +63,7 @@ public class GameObject {
     }
 
     public static void renderAll(Graphics g) {
-        System.out.println(objects.size());
+//        System.out.println(objects.size());
         for (int i = 0; i < objects.size(); i++) {
             GameObject object = objects.get(i);
             if (object.active) {
@@ -71,15 +71,14 @@ public class GameObject {
             }
         }
     }
+
     public static void runAll() {
-        System.out.println(objects.size());
         for (int i = 0; i < objects.size(); i++) {
             GameObject object = objects.get(i);
             if (object.active) {
                 object.run();
             }
         }
-
     }
 
     public static void clearAll() {

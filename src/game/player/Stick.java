@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.Set;
 
 public class Stick extends GameObject {
     public int stickHeight;
@@ -17,10 +18,11 @@ public class Stick extends GameObject {
     Graphics2D g2d;
     int angle = -180;
     boolean isFalling;
+    int rotateSpeed = 1;
 
     public Stick() {
 //        renderer = new Renderer("assets/images/Sprite-0001.png");
-        position.set(Settings.COLUMN_TO_EDGE, Settings.GAME_HEIGHT - Settings.COLUMN_HEIGHT);
+        position.set(Settings.COLUMN_TO_EDGE - 2, Settings.COLUMN_Y);
         hitBox = new BoxCollider(this, Settings.STICK_WIDTH, stickHeight);
         stickHeight=0;
         checkRelease=false;
@@ -36,7 +38,11 @@ public class Stick extends GameObject {
         if (KeyEventPress.isSpaceKeyJustRelease){
             isFalling = true;
             if (angle < -90) {
-                angle += 5;
+                angle += rotateSpeed/5;
+                rotateSpeed += 1;
+            } else {
+                angle = -90;
+                rotateSpeed = 1;
             }
         }
     }
@@ -48,7 +54,7 @@ public class Stick extends GameObject {
 
         if (isFalling) {
             AffineTransform af = g2d.getTransform();
-            g2d.rotate(Math.toRadians(angle), (int)this.position.x, (int)this.position.y);
+            g2d.rotate(Math.toRadians(angle), (int)this.position.x, (int)this.position.y+2);
             g2d.fillRect((int)position.x, (int)position.y, hitBox.width, stickHeight);
             g2d.setTransform(af);
             isFalling = false;
