@@ -1,24 +1,23 @@
 package game.collum;
 
 import game.GameObject;
-import game.KeyEventPress;
 import game.Settings;
-import game.Vector2D;
 import game.physics.BoxCollider;
 import tklibs.tklibs.Mathx;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
-public class Column extends GameObject {
+public class Column2 extends GameObject {
     public int columnWidth;
     public int distance;
+    public int x2;
 
-    public Column() {
+    public Column2() {
         columnWidth = Mathx.random(15, 70);
+        x2 = Mathx.random(150, 170);
 
         distance = Mathx.random(20, 80);
-        position.set(Settings.COLUMN_TO_EDGE - columnWidth, Settings.COLUMN_Y);
+        position.set(x2, Settings.COLUMN_Y);
         hitBox = new BoxCollider(this, columnWidth, Settings.COLUMN_HEIGHT);
     }
 

@@ -1,7 +1,9 @@
 package game.player;
 
 import game.GameObject;
+import game.GamePanel;
 import game.KeyEventPress;
+import game.collum.Column2;
 import game.renderer.Renderer;
 import game.Settings;
 import game.physics.BoxCollider;
@@ -12,7 +14,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Set;
 
-public class Stick extends GameObject {
+public class Stick extends GameObject  {
     public int stickHeight;
     public boolean checkRelease;
     Graphics2D g2d;
@@ -43,7 +45,15 @@ public class Stick extends GameObject {
             } else {
                 angle = -90;
                 rotateSpeed = 1;
+                this.checkFallen();
             }
+        }
+    }
+
+    private void checkFallen() {
+        Column2 column2 = GameObject.findIntersects(Column2.class, this.hitBox);
+        if (column2!=null) {
+
         }
     }
 

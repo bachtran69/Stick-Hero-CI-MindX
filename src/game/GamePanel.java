@@ -1,6 +1,7 @@
 package game;
 
 import game.collum.Column;
+import game.collum.Column2;
 import game.player.Player;
 import game.player.Stick;
 
@@ -13,15 +14,19 @@ public class GamePanel extends JPanel {
     Player player;
     Background background;
     Column column;
+    Column2 column2;
     Stick stick;
+    Boolean fallen;
 
 
     public GamePanel() {
         background = new Background();
         column = new Column();
+        column2 = new Column2();
         player = new Player();
         stick = new Stick();
         fps = 0;
+        fallen = false;
     }
 
     @Override
