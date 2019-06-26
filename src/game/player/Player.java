@@ -12,13 +12,21 @@ public class Player extends GameObject {
     boolean isWaiting;
     boolean canRun = false;
     boolean isFell = false;
+    Stick stick;
+    Column column;
+    Column2 column2;
+
 
     public Player()  {
+        this.stick = new Stick();
          renderer = new Renderer("assets/images/players/");
          position.set(Settings.COLUMN_TO_EDGE-Settings.PLAYER_WIDTH*anchor.x, Settings.PLAYER_Y-3);
          isWaiting = true;
          hitBox = new BoxCollider(this, Settings.PLAYER_WIDTH, Settings.PLAYER_HEIGHT);
-     }
+        column = GameObject.find(Column.class);
+        column2 = GameObject.find(Column2.class);
+
+    }
 
     @Override
     public void run() {
@@ -26,9 +34,6 @@ public class Player extends GameObject {
         if (this.velocity.x == 0 && this.velocity.y == 0) {
             isWaiting = true;
         }
-        Column column = GameObject.find(Column.class);
-        Column2 column2 = GameObject.find(Column2.class);
-        Stick stick = GameObject.find(Stick.class);
 
         // check xem player co dang waiting va o vi tri dau ko => cho chay
         if (this.isWaiting && this.position.x == Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x && stick.angle == -90  ) {
@@ -37,11 +42,11 @@ public class Player extends GameObject {
         }
 
         if (Settings.COLUMN_TO_EDGE + stick.stickHeight >= column2.position.x ) { //TODO: bo sung dieu kien <=
-            if (this.position.x >= column2.position.x + column2.columnWidth) {
+            if (this.position.x >= column2.position.x + column2.columnWidth - Settings.PLAYER_WIDTH/2) {
 
                 this.velocity.set(0,0);
                 isWaiting = true;
-                this.position.x = column2.position.x + column2.columnWidth;
+                this.position.x = column2.position.x + column2.columnWidth - Settings.PLAYER_WIDTH/2;
 
             }
         } else {
@@ -55,25 +60,36 @@ public class Player extends GameObject {
         }
 
         if (isWaiting && this.position.x > Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x) {
-            this.fallback(stick.position, column.position, column2.position);
+            this.fallback(column.position, column2.position);
+
         }
         if (column2.position.x+column2.columnWidth==Settings.COLUMN_TO_EDGE)
             isFell = true;
         if (isFell) {
             stick.reset();
+            column2 = new Column2();
             System.out.println(stick.angle);
+            this.position.x = Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x;
             isFell = false;
+        }
+//
+//        if (column2.position.x <= Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x) {
+//            column2.deactive();
+//        }
+
+        if (column.position.x < 0) {
+            column.deactive();
         }
     }
 
 //    private void checkReset() {
 
 
-    private void fallback(Vector2D stickPosition, Vector2D columnPosition, Vector2D column2Position) {
+    private void fallback(Vector2D columnPosition, Vector2D column2Position) {
          this.position.x--;
-         stickPosition.x--;
-         columnPosition.x--;
-         column2Position.x--;
+         stick.position.x--;
+         column.position.x--;
+         column2.position.x--;
 
     }
 }

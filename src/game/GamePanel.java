@@ -15,7 +15,6 @@ public class GamePanel extends JPanel {
     Background background;
     Column column;
     Column2 column2;
-    Stick stick;
     Boolean fallen;
 
 
@@ -24,7 +23,6 @@ public class GamePanel extends JPanel {
         column = new Column();
         column2 = new Column2();
         player = new Player();
-        stick = new Stick();
         fps = 0;
         fallen = false;
     }

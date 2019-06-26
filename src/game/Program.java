@@ -16,6 +16,7 @@ public class Program {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+
                     KeyEventPress.isSpacePress = true;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_S) {
