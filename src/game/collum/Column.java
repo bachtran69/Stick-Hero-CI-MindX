@@ -5,6 +5,7 @@ import game.KeyEventPress;
 import game.Settings;
 import game.Vector2D;
 import game.physics.BoxCollider;
+import game.player.Player;
 import tklibs.tklibs.Mathx;
 
 import java.awt.*;

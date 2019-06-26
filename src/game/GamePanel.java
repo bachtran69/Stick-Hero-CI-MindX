@@ -43,10 +43,7 @@ public class GamePanel extends JPanel {
     }
 
     public void runAll() {
-
-
         GameObject.runAll();
-
     }
 
     public void gameLoop() {

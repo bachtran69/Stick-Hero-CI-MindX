@@ -17,13 +17,14 @@ import java.util.Set;
 public class Stick extends GameObject  {
     public int stickHeight;
     public boolean checkRelease;
-    Graphics2D g2d;
-    int angle = -180;
+    int angle ;
     boolean isFalling;
     int rotateSpeed = 1;
 
     public Stick() {
 //        renderer = new Renderer("assets/images/Sprite-0001.png");
+        this.angle = -180;
+        rotateSpeed = 1;
         position.set(Settings.COLUMN_TO_EDGE - 2, Settings.COLUMN_Y);
         hitBox = new BoxCollider(this, Settings.STICK_WIDTH, stickHeight);
         stickHeight=0;
@@ -52,6 +53,7 @@ public class Stick extends GameObject  {
 
     @Override
     public void render(Graphics g) {
+        Graphics2D
         g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
 
@@ -64,5 +66,15 @@ public class Stick extends GameObject  {
         } else {
             g2d.fillRect((int)position.x, (int)position.y - stickHeight, hitBox.width, stickHeight);
         }
+    }
+
+    @Override
+    public void reset() {
+        this.angle = -180;
+        rotateSpeed = 1;
+        this.position.set(Settings.COLUMN_TO_EDGE - 2, Settings.COLUMN_Y);
+        stickHeight=0;
+        checkRelease=false;
+        this.isFalling = false;
     }
 }

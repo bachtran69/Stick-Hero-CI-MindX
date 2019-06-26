@@ -1,7 +1,11 @@
 package game;
 
 
+import game.collum.Column;
+import game.collum.Column2;
 import game.physics.BoxCollider;
+import game.player.Player;
+import game.player.Stick;
 import game.renderer.Renderer;
 
 import java.awt.*;
@@ -85,6 +89,10 @@ public class GameObject {
         }
     }
 
+    public static void resetAll() {
+
+    }
+
     public static void clearAll() {
         objects.clear();
 
@@ -119,5 +127,6 @@ public class GameObject {
     }
     public void reset(){
         active = true;
+
     }
 }
