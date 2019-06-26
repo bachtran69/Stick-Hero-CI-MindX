@@ -51,9 +51,9 @@ public class Stick extends GameObject  {
     }
 
     private void checkFallen() {
-        Column2 column2 = GameObject.findIntersects(Column2.class, this.hitBox);
-        if (column2!=null) {
-
+        Player player = GameObject.findIntersects(Player.class, this.hitBox);
+        if (player!=null) {
+            player.go();
         }
     }
 
