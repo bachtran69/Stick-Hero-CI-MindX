@@ -44,12 +44,6 @@ public class GameObject {
 
 
     public static <E extends GameObject> E findIntersects (Class<E> cls, BoxCollider hitbox){
-        /**
-        E ~ Enemy | Player | eBullet ...
-
-         */
-
-
         for (int i = 0; i < objects.size(); i++) {
             GameObject object = objects.get(i);
             if (object.active
@@ -57,6 +51,16 @@ public class GameObject {
                 && object.hitBox.intersects(hitbox)
                 && cls.isAssignableFrom(object.getClass())) {
                     return  (E) object;
+            }
+        }
+        return null;
+    }
+
+    public static <E extends GameObject> E find(Class<E> cls) {
+        for (int i = 0; i < objects.size(); i++) {
+            GameObject object = objects.get(i);
+            if(cls.isAssignableFrom(object.getClass())) {
+                return (E) object;
             }
         }
         return null;
@@ -100,7 +104,6 @@ public class GameObject {
         anchor = new Vector2D(0.5, 0.5);
         active = true;
     }
-
 
 
     public void render(Graphics g) {

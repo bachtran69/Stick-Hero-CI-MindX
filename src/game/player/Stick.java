@@ -45,15 +45,8 @@ public class Stick extends GameObject  {
             } else {
                 angle = -90;
                 rotateSpeed = 1;
-                this.checkFallen();
+//                this.checkFallen();
             }
-        }
-    }
-
-    private void checkFallen() {
-        Player player = GameObject.findIntersects(Player.class, this.hitBox);
-        if (player!=null) {
-            player.go();
         }
     }
 
