@@ -1,12 +1,15 @@
 package game.player;
 
 import game.GameObject;
+import game.GamePanel;
 import game.Settings;
 import game.Vector2D;
 import game.collum.Column;
 import game.collum.Column2;
 import game.physics.BoxCollider;
 import game.renderer.Renderer;
+import game.scene.SceneManager;
+import game.scene.game_over.GameOverScene;
 
 public class Player extends GameObject {
     boolean isWaiting;
@@ -15,7 +18,6 @@ public class Player extends GameObject {
     Stick stick;
     Column column;
     Column2 column2;
-
 
     public Player()  {
         this.stick = new Stick();
@@ -56,7 +58,10 @@ public class Player extends GameObject {
                 this.velocity.set(0,10);
                 isWaiting = false;
                 this.position.x = Settings.COLUMN_TO_EDGE + stick.stickHeight - Settings.PLAYER_WIDTH*anchor.x;
-                // TODO: GAME_OVER SCENE
+                if(this.position.y > Settings.GAME_HEIGHT) {
+                    SceneManager.signNewScene(new GameOverScene());
+                    GamePanel.score=0;
+                }
             }
         }
 
@@ -69,6 +74,8 @@ public class Player extends GameObject {
 
         if (column2.position.x + column2.columnWidth <= Settings.COLUMN_TO_EDGE) {
             isFell = true;
+            GamePanel.score += 1;
+
             System.out.println("isFell=true: " + column2.position.x + " " + column2.columnWidth);
         }
 

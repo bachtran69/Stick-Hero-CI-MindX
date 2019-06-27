@@ -15,24 +15,19 @@ public class Program {
         window.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+                KeyEventPress.isAnyKeyPress=true;
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 
                     KeyEventPress.isSpacePress = true;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_S) {
-                    KeyEventPress.isSPress = true;
-                }
-
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+                KeyEventPress.isAnyKeyPress=false;
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     KeyEventPress.isSpacePress = false;
                     KeyEventPress.isSpaceKeyJustRelease = true;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_S) {
-                    KeyEventPress.isSPress = false;
                 }
             }
         });
