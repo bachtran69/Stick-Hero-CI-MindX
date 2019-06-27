@@ -22,7 +22,7 @@ public class BackgroundGameOver extends GameObject {
     int count=0;
     private void checkChangeScene() {
         count++;
-        if(KeyEventPress.isAnyKeyPress && count > 120)
+        if(KeyEventPress.isAnyKeyPress && count > 60)
             SceneManager.signNewScene(new PlayScene());
     }
 }

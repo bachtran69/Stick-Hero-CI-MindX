@@ -1,9 +1,6 @@
 package game.player;
 
-import game.GameObject;
-import game.GamePanel;
-import game.Settings;
-import game.Vector2D;
+import game.*;
 import game.collum.Column;
 import game.collum.Column2;
 import game.physics.BoxCollider;
@@ -55,12 +52,17 @@ public class Player extends GameObject {
         } else {
             if (this.position.x >= Settings.COLUMN_TO_EDGE + stick.stickHeight - Settings.PLAYER_WIDTH*anchor.x &&
                 stick.stickHeight!=0) {
+//                KeyEventPress.isSpacePress=false;
                 this.velocity.set(0,10);
                 isWaiting = false;
                 this.position.x = Settings.COLUMN_TO_EDGE + stick.stickHeight - Settings.PLAYER_WIDTH*anchor.x;
                 if(this.position.y > Settings.GAME_HEIGHT) {
                     SceneManager.signNewScene(new GameOverScene());
                     GamePanel.score=0;
+                    KeyEventPress.isSpacePress=false;
+                    isWaiting=true;
+                    this.velocity.set(0,0);
+                    this.deactive();
                 }
             }
         }
@@ -87,7 +89,7 @@ public class Player extends GameObject {
             column.position.set(column2.position.x, Settings.COLUMN_Y);
             column2.deactive();
             column2 = new Column2();
-            System.out.println("reset: "+ column.position.x + " " + column.columnWidth);
+            System.out.println("reset: " + column.position.x + " " + column.columnWidth);
             System.out.println(column2.position.x + " " + column2.columnWidth);
             System.out.println(isWaiting);
 //            System.out.println(stick.angle);
