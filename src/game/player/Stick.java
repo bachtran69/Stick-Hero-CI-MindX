@@ -33,7 +33,7 @@ public class Stick extends GameObject  {
     @Override
     public void run() {
         super.run();
-        System.out.println(angle);
+//        System.out.println(angle);
         if (KeyEventPress.isSpacePress) {
             stickHeight += 2;
         }
@@ -47,7 +47,6 @@ public class Stick extends GameObject  {
                 rotateSpeed = 1;
 //                this.checkFallen();
             }
-
         }
     }
 
@@ -58,7 +57,7 @@ public class Stick extends GameObject  {
         g2d.setColor(Color.BLACK);
 
         if (isFalling) {
-            System.out.println("lol");
+//            System.out.println("lol");
             AffineTransform af = g2d.getTransform();
             g2d.rotate(Math.toRadians(angle), (int)this.position.x, (int)this.position.y+2);
             g2d.fillRect((int)position.x, (int)position.y, hitBox.width, stickHeight);
