@@ -42,24 +42,23 @@ public class Player extends GameObject {
         }
 
         if (Settings.COLUMN_TO_EDGE + stick.stickHeight >= column2.position.x &&
-                Settings.COLUMN_TO_EDGE + stick.stickHeight <= column2.position.x + column2.columnWidth) { //TODO: bo sung dieu kien <=
+                Settings.COLUMN_TO_EDGE + stick.stickHeight <= column2.position.x + column2.columnWidth) {
             if (this.position.x >= column2.position.x + column2.columnWidth - Settings.PLAYER_WIDTH/2) {
                 this.velocity.set(0,0);
                 isWaiting = true;
                 this.position.x = column2.position.x + column2.columnWidth - Settings.PLAYER_WIDTH/2;
             }
         } else {
-            if (this.position.x >= Settings.COLUMN_TO_EDGE + stick.stickHeight) {
-
-                this.velocity.set(0,0);
-                isWaiting = true;
-                this.position.x = Settings.COLUMN_TO_EDGE + stick.stickHeight;
-                this.position.y += 5;
+            if (this.position.x >= Settings.COLUMN_TO_EDGE + stick.stickHeight - Settings.PLAYER_WIDTH/2) {
+                this.velocity.set(0,10);
+                isWaiting = false;
+                this.position.x = Settings.COLUMN_TO_EDGE + stick.stickHeight - Settings.PLAYER_WIDTH/2;
+                // TODO: GAME_OVER SCENE
             }
         }
 
         if (isWaiting && this.position.x > Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x) {
-            this.fallback(column.position, column2.position);
+            this.fallback(); //column.position, column2.position
 
         }
         if (column2.position.x+column2.columnWidth==Settings.COLUMN_TO_EDGE)
@@ -71,7 +70,7 @@ public class Player extends GameObject {
             this.position.x = Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x;
             isFell = false;
         }
-//
+
 //        if (column2.position.x <= Settings.COLUMN_TO_EDGE - Settings.PLAYER_WIDTH*anchor.x) {
 //            column2.deactive();
 //        }
@@ -83,12 +82,10 @@ public class Player extends GameObject {
 
 //    private void checkReset() {
 
-
-    private void fallback(Vector2D columnPosition, Vector2D column2Position) {
-         this.position.x--;
-         stick.position.x--;
-         column.position.x--;
-         column2.position.x--;
-
+    private void fallback() { //Vector2D columnPosition, Vector2D column2Position
+         this.position.x-=2;
+         stick.position.x-=2;
+         column.position.x-=2;
+         column2.position.x-=2;
     }
 }
