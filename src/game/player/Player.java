@@ -41,13 +41,12 @@ public class Player extends GameObject {
             this.velocity.set(2,0);
         }
 
-        if (Settings.COLUMN_TO_EDGE + stick.stickHeight >= column2.position.x ) { //TODO: bo sung dieu kien <=
+        if (Settings.COLUMN_TO_EDGE + stick.stickHeight >= column2.position.x &&
+                Settings.COLUMN_TO_EDGE + stick.stickHeight <= column2.position.x + column2.columnWidth) { //TODO: bo sung dieu kien <=
             if (this.position.x >= column2.position.x + column2.columnWidth - Settings.PLAYER_WIDTH/2) {
-
                 this.velocity.set(0,0);
                 isWaiting = true;
                 this.position.x = column2.position.x + column2.columnWidth - Settings.PLAYER_WIDTH/2;
-
             }
         } else {
             if (this.position.x >= Settings.COLUMN_TO_EDGE + stick.stickHeight) {
